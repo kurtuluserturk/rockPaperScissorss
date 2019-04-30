@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>ROCK-PAPER-SCISSORS</title>
+        <style>
+            body{
+                background: red;
+            }
+            #list img{
+                padding: 5px;
+                border: 2px solid blue;
+            }
+            #pcResult{
+                float: left;
+            }
+            #result{
+                float: left;
+                width: 250px;
+                height: 250px;
+                font-size: 2em;
+                padding: 20px;
+                background: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="list">
+            <img src="paper.png" id="paper" width="300" height="300" data-id="0">
+            <img src="scissors.png" id="scissors" width="300" height="300" data-id="1">
+            <img src="rock.png" id="rock" width="300" height="300" data-id="2">
+        </div>
+        <div id="pcResult">
+            <img src="" id="pcSelection" width="300" height="300" alt="Pc Selection">
+        </div>
+        <div id="result">            
+        </div>
+        <script>
+            var list = ["paper.png","scissors.png","rock.png"];
+            var paper = document.getElementById("paper");
+            var scissors = document.getElementById("scissors");
+            var rock = document.getElementById("rock");
+            var pcSelection = document.getElementById("pcSelection");
+            var resultWrite = document.getElementById("result");
+            paper.onclick = choose;
+            scissors.onclick = choose;
+            rock.onclick = choose;
+            function choose(){
+                var pc = randomSelection();
+                var selection = this.dataset.id;  
+                if(pc == 0 && selection == 0){
+                    result = "Same selected :/";
+                }
+                else if(pc == 0 && selection == 1){
+                    result = "You win, scissors cut paper :)";
+                }
+                else if(pc == 0 && selection == 2){
+                    result = "You lose, paper wraps rock :(";
+                }
+                else if(pc == 1 && selection == 0){
+                    result = "You lose, scissors cut paper :(";
+                }
+                else if(pc == 1 && selection == 1){
+                    result = "Same selected :/";
+                }
+                else if(pc == 1 && selection == 2){
+                    result = "You win, rock breaks scissors :)";
+                }
+                else if(pc == 2 && selection == 0){
+                    result = "You win, paper wraps rock :)";
+                }
+                else if(pc == 2 && selection == 1){
+                    result = "You lose, rock breaks scissors :(";
+                }
+                else if(pc == 2 && selection == 2){
+                    result = "Same selected :/";
+                }
+                resultWrite.innerHTML = result;          
+            }
+            function randomSelection(){
+                var number = Math.round(Math.random() * 2);
+                pcSelection.src = list[number];
+                return number;
+            }
+        </script>        
+    </body>
+</html>
